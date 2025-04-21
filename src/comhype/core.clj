@@ -6,12 +6,14 @@
 
 (def my-todos
   (atom [{:item "Groceries" :done? false}
-         {:item "Taxes" :done? true}]))
+         {:item "Taxes" :done? true}
+         {:item "Pick up drycleaning" :done false}
+         {:item "Destroy documents" :done true}]))
 
 (defn todo-list
   [todos]
   (-> [:table
-       [:thead [:tr [:th "Thing to do"] [:th "Done?"]]]
+       [:thead [:tr [:th "Frfr"] [:th "Cap?"]]]
        [:tbody
         (for [[index {:keys [item done?]}] (map vector (range) todos)]
           [:tr
@@ -56,7 +58,7 @@
   1. Create storage for client objects
   2. Attach events for when application state changes
   3. Handle incoming client connections, send current view on connect
-  4. Handle client commands, update view with command-fn"
+  4. Handle client commands, update model with command-fn"
   [state command-fn render-fn]
   (let [clients (atom #{})
         update-clients!
@@ -106,5 +108,6 @@
   
   (todo-list @my-todos)
 
+  ;; This stops the HTTP server
   (*server*)
   )
