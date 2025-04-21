@@ -1,33 +1,35 @@
 <script>
-var ws;
+  var ws;
 
-globalThis.cmd = function(command) {
-    ws.send(command);
-}
+  globalThis.cmd = function(command) {
+      ws.send(command);
+  }
 
-globalThis.reconnect = function() {
-    function __eval(code) {
-	import(`data:text/javascript,/*${crypto.randomUUID()}*/${code}`);
-    }
+  globalThis.reconnect = function() {
+      const AsyncFunction = (async function() {}).constructor;
+      
+      function __eval(code) {
+	  (AsyncFunction(code))();
+      }
 
-    try {
-	ws && ws.close();
-	
-	ws = new WebSocket("/");
+      try {
+	  ws && ws.close();
+	  
+	  ws = new WebSocket("/");
 
-	ws.addEventListener("message", function (event) {
-	    (typeof event.data === "string") && __eval(event.data);
-	});
+	  ws.addEventListener("message", function (event) {
+	      (typeof event.data === "string") && __eval(event.data);
+	  });
 
-	ws.addEventListener("error", reconnect);
+	  ws.addEventListener("error", reconnect);
 
-	ws.addEventListener("open", function() {
-	    cmd('["client-alive"]');
-	});
-    }
-    catch {}
-}
+	  ws.addEventListener("open", function() {
+	      cmd('["client-alive"]');
+	  });
+      }
+      catch {}
+  }
 
-reconnect();
-document.currentScript.remove();  
+  reconnect();
+  document.currentScript.remove();  
 </script>
