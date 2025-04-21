@@ -13,7 +13,7 @@
 (defn todo-list
   [todos]
   (-> [:table
-       [:thead [:tr [:th "Frfr"] [:th "Cap?"]]]
+       [:thead [:tr [:th "Thing to do"] [:th "Done?"]]]
        [:tbody
         (for [[index {:keys [item done?]}] (map vector (range) todos)]
           [:tr
