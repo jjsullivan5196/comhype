@@ -1,5 +1,6 @@
 {:paths ["src" "resources"]
  :deps  {org.clojure/data.json {:mvn/version "2.5.1"}
+         mount/mount           {:mvn/version "0.1.21"}
          ring/ring             {:mvn/version "1.14.1"}
          http-kit/http-kit     {:mvn/version "2.8.0"}
          hiccup/hiccup         {:mvn/version "2.0.0-RC5"}}}
