@@ -1,5 +1,7 @@
 ## Quickstart/demo
 
+Screen recording of this example app here https://www.youtube.com/watch?v=ukCEs9M8ZoI
+
 Install JDK 11+ and Clojure https://clojure.org/guides/install_clojure
 
 Use your favorite IDE or run `clojure`, then `(load "comhype/core")` to start the app. It will be at http://localhost:5055
